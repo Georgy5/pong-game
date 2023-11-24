@@ -39,26 +39,19 @@ setInterval(() => {
   renderField()
   renderBall(posX, posY)
 //   renderPaddle(paddleY)
-//   posX += vX
-  posY += vY
-  // if (posX + RADIUS === canvasWidth) {
-  //   vX = -2
-  // }
-  // if (posX - RADIUS === 0) {
-  //   vX = +2
-  // }
 
-//   if (posX + RADIUS === canvasWidth || posX - RADIUS === 0) {
-//     vX = -1 * vX
-//   }
+  posX += vX
+  posY += vY
+
+  if (posX + RADIUS === canvasWidth || posX - RADIUS === 0) {
+    vX = -1 * vX
+  }
   if (posY + RADIUS === canvasHeight || posY - RADIUS === 0) {
     vY = -1 * vY
   }
   
-  // 1. Make the ball bounce vertically
-  // 2. Automatically both directions will work
-  // 3. Impact of the ball with the paddle in the X axis
 
+  // 3. Impact of the ball with the paddle in the X axis
 }, 17)
 
 document.addEventListener('keydown', (event) => {
