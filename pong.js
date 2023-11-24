@@ -63,13 +63,15 @@ setInterval(() => {
   if (posX + RADIUS === canvasWidth || posX - RADIUS === 0) {
   vX = -1 * vX
 
-  } else if (posX + RADIUS === canvasWidth || posX === 44 && (posY >= leftPaddleY && posY <= leftPaddleY + paddleLengthss) ) {
+  } else if (posX + RADIUS === canvasWidth || posX === 44 && (posY >= leftPaddleY && posY <= leftPaddleY + paddleLength) ) {
     vX = -1 * vX
   }
 
   if (posY + RADIUS === canvasHeight || posY - RADIUS === 0) {
     vY = -1 * vY
-  }
+  } // else if (posY + RADIUS === canvasHeight || posY === leftPaddleY && (posX >= leftPaddleX && posX <= leftPaddleX + paddleWidth) ) {
+  //   vX = -1 * vX
+  // }
 }, 17)
 
 const collisionShouter = (posX) => {
