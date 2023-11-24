@@ -19,9 +19,16 @@ const paddleLength = 80;
 const leftPaddleX = 20;
 
 // render left paddle
-function renderPaddle(y) {
+function renderLeftPaddle(y) {
   ctx.fillStyle = 'white';
   ctx.fillRect(leftPaddleX, y, paddleWidth, paddleLength);
+}
+
+const rightPaddleX = canvasWidth - paddleWidth - 20;
+// render right paddle
+function renderRightPaddle(y) {
+  ctx.fillStyle = 'white';
+  ctx.fillRect(rightPaddleX, y, paddleWidth, paddleLength);
 }
 
 // debug ball
@@ -40,9 +47,10 @@ function renderBall(x, y) {
   ctx.fill();
 }
 
-// lPaddle() {}
+
 // 20 + 15 + 10 = 45 
 const lPaddleWallX = leftPaddleX + paddleWidth + RADIUS;
+
 
 
 // Render Pong Game
@@ -51,16 +59,18 @@ let posY = 50
 let vX = +2
 let vY = -2
 let leftPaddleY = 20
+let rightPaddleY = 20
 setInterval(() => {
   renderField()
 
   renderBall(posX, posY)
-  renderPaddle(leftPaddleY)
+  renderLeftPaddle(leftPaddleY)
+  renderRightPaddle(rightPaddleY)
 
   posX += vX
   posY += vY
-  collisionShouter(posX)
-  if (posX + RADIUS === canvasWidth || posX - RADIUS === 0) {
+
+  if (posX === canvasWidth - 44 && (posY >= rightPaddleY && posY <= rightPaddleY + paddleLength) || posX - RADIUS === 0) {
   vX = -1 * vX
 
   } else if (posX + RADIUS === canvasWidth || posX === 44 && (posY >= leftPaddleY && posY <= leftPaddleY + paddleLength) ) {
@@ -74,12 +84,11 @@ setInterval(() => {
   // }
 }, 17)
 
-const collisionShouter = (posX) => {
-  if (posX === 44) {
-    console.log("Collision with left paddle detected!");
-  };
-}
 
+// document.addEventListener('keydown', (e) => {
+//   console.log("Keypress: ");
+//   console.log(e);
+// })
 
 document.addEventListener('keydown', (event) => {
   const key = event.key
@@ -91,5 +100,14 @@ document.addEventListener('keydown', (event) => {
   }
   if (key === 's') {
     leftPaddleY += 5
+  }
+
+  if (key === 'ArrowUp') {
+    if (rightPaddleY >= 5) {
+      rightPaddleY -= 5
+    }
+  }
+  if (key === 'ArrowDown') {
+    rightPaddleY += 5
   }
 })
