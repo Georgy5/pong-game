@@ -30,23 +30,23 @@ function renderBall(x, y) {
 }
 
 // Render Pong Game
-let posX = 40
+let posX = 50
 let vX = +2
 let paddleY = 20
 setInterval(() => {
   renderField()
-  renderBall(posX, 40)
-  renderPaddle(paddleY)
-  // posX += vX
+  renderBall(posX, 50)
+//   renderPaddle(paddleY)
+  posX += vX
   // if (posX + RADIUS === canvasWidth) {
   //   vX = -2
   // }
   // if (posX - RADIUS === 0) {
   //   vX = +2
   // }
-  // if (posX + RADIUS === canvasWidth || posX - RADIUS === 0) {
-  //   vX = -1 * vX
-  // }
+  if (posX + RADIUS === canvasWidth || posX - RADIUS === 0) {
+    vX = -1 * vX
+  }
   
   // 1. Make the ball bounce vertically
   // 2. Automatically both directions will work
