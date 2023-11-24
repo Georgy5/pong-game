@@ -40,18 +40,10 @@ function renderBall(x, y) {
   ctx.fill();
 }
 
-// find collisions
-const collision = () => {
-    canvasWidth || canvasHeight 
-    // x + paddleWidth, y
-
-}
 // lPaddle() {}
 // 20 + 15 + 10 = 45 
 const lPaddleWallX = leftPaddleX + paddleWidth + RADIUS;
 
-// if paddleWall 
-console.log(lPaddleWallX);
 
 // Render Pong Game
 let posX = 50
@@ -66,7 +58,7 @@ setInterval(() => {
   renderPaddle(leftPaddleY)
 
   posX += vX
-//   posY += vY
+  posY += vY
   collisionShouter(posX)
   if (posX + RADIUS === canvasWidth || posX - RADIUS === 0) {
   vX = -1 * vX
@@ -75,12 +67,9 @@ setInterval(() => {
     vX = -1 * vX
   }
 
-//   if (posY + RADIUS === canvasHeight || posY - RADIUS === 0) {
-//     vY = -1 * vY
-//   }
-  
-
-  // 3. Impact of the ball with the paddle in the X axis
+  if (posY + RADIUS === canvasHeight || posY - RADIUS === 0) {
+    vY = -1 * vY
+  }
 }, 17)
 
 const collisionShouter = (posX) => {
